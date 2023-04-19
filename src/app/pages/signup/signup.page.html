@@ -1,0 +1,49 @@
+<app-header color="light" backButton="/home" title="Sign Up" ngClass="ion-text-center"></app-header>
+<ion-content>
+  <div class="container content">
+    <img src="../../assets/background.png"/>
+    <div class="buttons-container">
+      <form (keyup.enter)="submit()" (ngSubmit)="submit()" class="ion-text-center">
+
+        <!-- Input Name -->
+
+        <app-custom-input autocomplete="name" [control]="form.controls.name" type="text" label="Nombre" icon="person-outline"></app-custom-input>
+        <div *ngIf="form.controls.name && form.controls.name.dirty">
+          <div class="validators" *ngIf="form.controls.name.errors?.['required']" > Ingresa tu nombre</div>
+          <div class="validators" *ngIf="form.controls.name.errors?.['minlength']" > Ingresa un nombre valido</div>
+        </div>
+        
+         <!-- Input Email -->
+
+        <app-custom-input autocomplete="email" [control]="form.controls.email" type="email" label="Correo" icon="mail-outline"></app-custom-input>
+        <div *ngIf="form.controls.email && form.controls.email.dirty">
+          <div class="validators" *ngIf="form.controls.email.errors?.['required']" > Ingresa tu email</div>
+          <div class="validators" *ngIf="form.controls.email.errors?.['email']" > Ingresa un email valido</div>
+        </div>
+
+         <!-- Input Password -->
+
+        <app-custom-input [control]="form.controls.password" type="password" label="Contraseña" icon="lock-closed-outline"></app-custom-input>
+        <div *ngIf="form.controls.password && form.controls.password.dirty">
+          <div class="validators" *ngIf="form.controls.password.errors?.['required']" > Ingresa tu contraseña</div>
+          <div class="validators" *ngIf="form.controls.password.errors?.['minlength']" > La contraseña debe tener al menos 6 caracteres</div>
+        </div>
+
+        <!-- Input ConfirmPassword -->
+
+        <app-custom-input [control]="form.controls.confirmPassword" type="password" label="Confirmar contraseña" icon="checkmark-circle-outline"></app-custom-input>
+        <div *ngIf="form.controls.confirmPassword && form.controls.password.dirty">
+          <div class="validators" *ngIf="form.controls.confirmPassword.errors?.['required']" > Vuelve a ingresar tu contraseña</div>
+          <div class="validators" *ngIf="form.controls.confirmPassword.errors?.['noMatch']" > Las contraseñas no coinciden</div>
+        </div>
+  
+        <ion-button color="dark" class="ion-margin-vertical" [disabled]="form.invalid" type="submit" shape="round">
+          Sign up
+          <ion-icon slot="end" name="person-add-outline"></ion-icon>
+        </ion-button>
+      </form>
+      
+    </div>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#ffd700" fill-opacity="1" d="M0,288L48,272C96,256,192,224,288,197.3C384,171,480,149,576,165.3C672,181,768,235,864,250.7C960,267,1056,245,1152,250.7C1248,256,1344,288,1392,304L1440,320L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
+  </div>
+</ion-content>
