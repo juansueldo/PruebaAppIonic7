@@ -20,7 +20,7 @@ const config: CapacitorConfig = {
       splashFullScreen: true,
       splashImmersive: true,
       layoutName: "launch_screen",
-      useDialog: false,
+      useDialog: true,
     },
   },
 };
