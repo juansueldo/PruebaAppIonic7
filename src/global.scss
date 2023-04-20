@@ -38,13 +38,20 @@ h1{
     color: var(--ion-color-light-contrast);
     height: 100%;
 }
-
+.container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  margin-top: -80px;
+}
 ion-item{
     --background: transparent;
 }
 
 .validators{
-    font-size: 14px;
+    font-size: 12px;
     color: var(--ion-color-danger);
     padding-bottom: 15px;
     text-align: center;
@@ -79,6 +86,7 @@ img{
   font-weight: bolder;
   float: left;
   padding-left: 5px;
+  font-size: 2rem;
 }
   span{
     background: -webkit-linear-gradient(#dfd009,#df9409, #333);
@@ -86,7 +94,7 @@ img{
     -webkit-text-fill-color: transparent;
   }
   .container p{
-    font-size: 20px;
+    font-size: 14px;
     float: left;
     padding-left: 5px;
     text-shadow: 1px 1px 2px black;
@@ -101,9 +109,7 @@ img{
       justify-content: center;
       align-items: center;
     }
-    .ion-margin-vertical{
-      width: 450px;
-    }
+    
     img{
       height: 150px;
   }

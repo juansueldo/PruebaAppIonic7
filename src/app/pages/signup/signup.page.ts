@@ -5,7 +5,7 @@ import { IonicModule } from '@ionic/angular';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { UtilsService } from 'src/app/services/utils.service';
 import { CustomValidators } from 'src/app/utils/custom-validators';
-import { User } from 'src/app/home/models/user.model';
+import { User } from 'src/app/models/user.model';
 import { CustomInputComponent } from 'src/app/shared/components/custom-input/custom-input.component';
 import { HeaderComponent } from 'src/app/shared/components/header/header.component';
 

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import {AngularFirestore} from '@angular/fire/compat/firestore';
-import { User } from '../home/models/user.model';
+import { User } from '../models/user.model';
 import {getAuth, updateProfile} from "firebase/auth"; 
 
 @Injectable({
@@ -31,4 +31,5 @@ export class FirebaseService {
   logout(){
     return this.auth.signOut();
   }
+
 }

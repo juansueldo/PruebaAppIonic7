@@ -6,7 +6,7 @@ import { FirebaseService } from 'src/app/services/firebase.service';
 import { UtilsService } from 'src/app/services/utils.service';
 import { Router } from '@angular/router';
 import { CustomInputComponent } from 'src/app/shared/components/custom-input/custom-input.component';
-import { User } from 'src/app/home/models/user.model';
+import { User } from 'src/app/models/user.model';
 import { HeaderComponent } from 'src/app/shared/components/header/header.component';
 
 @Component({
@@ -17,11 +17,31 @@ import { HeaderComponent } from 'src/app/shared/components/header/header.compone
   imports: [IonicModule, CommonModule, FormsModule, CustomInputComponent, HeaderComponent,ReactiveFormsModule]
 })
 export class LoginPage implements OnInit {
+
+  @Input() user1: User={
+    uid: "koXwXrjkNBc2LKaoAX0tsPuMRVY2",
+    name: "Natalia",
+    email: "natalia@gmail.com",
+    password: "123456"
+  }
+  @Input() user2: User={
+    uid: "hIqbufz6HASIRcZBu56Q9Ccl45C2",
+    name: "Martin",
+    email: "martin@gmail.com",
+    password: "123456"
+  }
+  @Input() user3: User={
+    uid: "NfFmMWmauWMsWaRk58n83F3Zqo93",
+    name: "Juan",
+    email: "juan@gmail.com",
+    password: "123456"
+  }
+
+
   form = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('',[Validators.required]),
   })
-      
     constructor(
       private firebaseSvc: FirebaseService,
       private utilsSvc: UtilsService,
@@ -65,5 +85,27 @@ export class LoginPage implements OnInit {
           this.utilsSvc.dismissLoading();
         })
       }
+    }
+    signup(){
+      this.utilsSvc.routerLink('/signup')
+    }
+    autoLogin(user){
+      this.utilsSvc.presentLoading({message: 'Autenticando...'})
+
+      this.firebaseSvc.login(user as User).then(async res =>{
+        
+        this.utilsSvc.setElementInLocalstorage('user',user)
+          this.utilsSvc.routerLink('/dashboard')
+          this.route.navigate(['/dashboard'], { queryParams: user });
+          
+          
+          this.utilsSvc.dismissLoading();
+          this.utilsSvc.presentToast({
+            message: `Te damos la bienvenida ${user.name}`,
+            duration: 3500,
+            color: 'warning',
+            icon: 'person-outline'
+          })
+      })
     }
   }

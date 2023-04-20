@@ -5,13 +5,14 @@ import { IonicModule } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
 import { UtilsService } from 'src/app/services/utils.service';
 import { FirebaseService } from 'src/app/services/firebase.service';
+import { HeaderComponent } from 'src/app/shared/components/header/header.component';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.page.html',
   styleUrls: ['./dashboard.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule]
+  imports: [IonicModule, CommonModule, FormsModule, HeaderComponent]
 })
 export class DashboardPage implements OnInit {
 
@@ -21,20 +22,32 @@ export class DashboardPage implements OnInit {
 
     private route: ActivatedRoute,
     private router: UtilsService,
-    private firebaseSvc: FirebaseService
+    private firebaseSvc: FirebaseService,
+    
   ) { }
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
       const email = params['email'];
       const name = params['name'];
-      console.log(email, name);
       this.nameTitle = name;
     });
   }
 
-  logut(){
-    this.firebaseSvc.logout().then(()=>
-    this.router.routerLink('/login'))
+  logout(){
+    this.firebaseSvc.logout();
+    this.router.presentLoading({message: `Cerrando sesión de ${this.nameTitle}...`,duration: 500});
+    this.router.dismissLoading();
+    setTimeout(()=>{
+      this.router.routerLink('/login');
+    }, 1000);
+    
+    this.router.presentToast({
+      message: `Sesión cerrrada `,
+      duration: 1500,
+      color: 'warning',
+      icon: 'person-outline'
+    })
+
   }
 
 }

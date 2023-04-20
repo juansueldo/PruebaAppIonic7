@@ -1,3 +1,5 @@
+
+
 <app-header color="light" backButton="/home" title="Login" ngClass="ion-text-center"></app-header>
 <ion-content>
   <div class="container content">
@@ -16,17 +18,37 @@
         </div>
   
         <ion-button color="dark" class="ion-margin-vertical" [disabled]="form.invalid" type="submit" shape="round">
-          Log in
+          Login
           <ion-icon slot="end" name="log-in-outline"></ion-icon>
         </ion-button>
 
+        <div class="auto-login">
+          <ion-button color="dark" class="ion-margin-vertical" (click)="autoLogin(user1)" shape="round">
+            Acceso rápido usuario 1
+            <ion-icon slot="end" name="log-in-outline"></ion-icon>
+          </ion-button>
+        </div>
+        <div class="auto-login">
+          <ion-button color="dark" class="ion-margin-vertical" (click)="autoLogin(user2)" shape="round">
+            Acceso rápido usuario 2
+            <ion-icon slot="end" name="log-in-outline"></ion-icon>
+          </ion-button>
+        </div> 
+        <div class="auto-login">
+          <ion-button color="dark" class="ion-margin-vertical" (click)="autoLogin(user3)" shape="round">
+            Acceso rápido usuario 3
+            <ion-icon slot="end" name="log-in-outline"></ion-icon>
+          </ion-button>
+        </div>     
+
         <div class="sing-up">
-          <div>No tienes tienes cuenta?</div>
-            <ion-button color="dark" routerLink="sign-up" class="ion-margin-vertical" shape="round">
-              Sign up
+          <h5>No tienes tienes cuenta?</h5>
+            <ion-button color="dark" (click)="signup()" class="ion-margin-vertical" shape="round">
+              Signup
               <ion-icon slot="end" name="person-add-outline"></ion-icon>
             </ion-button>
         </div>
+        
       </form>
       
     </div>
