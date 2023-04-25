@@ -69,7 +69,7 @@ export class LoginPage implements OnInit {
           this.utilsSvc.dismissLoading();
           this.utilsSvc.presentToast({
             message: `Te damos la bienvenida ${user.name}`,
-            duration: 3500,
+            duration: 500,
             color: 'warning',
             icon: 'person-outline'
           })

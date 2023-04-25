@@ -20,28 +20,30 @@ export class DashboardPage implements OnInit {
   nameTitle: string
   constructor(
 
-    private route: ActivatedRoute,
-    private router: UtilsService,
+    private router: ActivatedRoute,
+    private utilsSvc: UtilsService,
     private firebaseSvc: FirebaseService,
     
   ) { }
   ngOnInit() {
-    this.route.queryParams.subscribe(params => {
+    this.router.queryParams.subscribe(params => {
       const email = params['email'];
       const name = params['name'];
       this.nameTitle = name;
     });
   }
 
-  logout(){
-    this.firebaseSvc.logout();
-    this.router.presentLoading({message: `Cerrando sesión de ${this.nameTitle}...`,duration: 500});
-    this.router.dismissLoading();
+ async logout(){
+    await this.firebaseSvc.logout();
+    this.utilsSvc.presentLoading({message: `Cerrando sesión de ${this.nameTitle}...`, duration: 500});
+    
     setTimeout(()=>{
-      this.router.routerLink('/login');
+      this.utilsSvc.routerLink('/login');
     }, 1000);
     
-    this.router.presentToast({
+    this.utilsSvc.dismissLoading();
+    
+    this.utilsSvc.presentToast({
       message: `Sesión cerrrada `,
       duration: 1500,
       color: 'warning',
